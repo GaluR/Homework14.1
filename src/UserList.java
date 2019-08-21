@@ -8,20 +8,9 @@ public class UserList {
         List<Double> list = new ArrayList<>();
 
         System.out.println("Wprowadz liczbę: ");
-        double number = 0;
-        double sum = 0;
-        while (!(number < 0)) {
-            number = scan.nextDouble();
-            if (number >= 0) {
-                list.add(number);
-                sum += number;
-            }
-        }
-        sumOfNumbers(list);
-        System.out.println(sum);
-        showInversely(list);
-        System.out.println("\n" + theBiggestOne(list));
-        System.out.println(theLoweststOne(list));
+        sumOfNumbers(list, scan);
+        System.out.println("Największa wartość z wprowadzonych to: " + theBiggestOne(list));
+        System.out.println("Najmniejsza wartość z wprowadzonych to: " + theLoweststOne(list));
     }
 
     private static double theBiggestOne(List<Double> list) {
@@ -38,25 +27,36 @@ public class UserList {
         double lower = list.get(0);
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) < lower) {
-                lower = list.get(i); // alternatywnie Collections.max(list) <- fajna funkcja;
+                lower = list.get(i);
             }
         }
         return lower;
     }
 
-    private static void showInversely(List<Double> list) {
-        for (int i = list.size() - 1; i >= 0; i--) {
+    private static void sumOfNumbers(List<Double> list, Scanner scan) {
+        double number = 0;
+        double sum = 0;
+        while (!(number < 0)) {         //wczytywanie wartości od użytkownika do listy i sumowanie ich
+            number = scan.nextDouble();
+            if (number >= 0) {
+                list.add(number);
+                sum += number;
+            }
+        }
+
+        for (int i = list.size() - 1; i >= 0; i--) { // wyświetlanie listy w odwrotnej do wprowaadzonej kolejnosci
             System.out.print(list.get(i) + " ");
         }
-    }
+        System.out.println();
 
-    private static void sumOfNumbers(List<Double> list) {
         for (int i = 0; i < list.size(); i++) {
-            if (!(i == list.size() - 1)) {
+            if (!(i == list.size() - 1)) {                  //wyświetlanie wartosci i sumy
                 System.out.printf(list.get(i) + " + ");
             } else {
                 System.out.printf(list.get(i) + " = ");
+                System.out.println(sum + "\n");
             }
         }
     }
+
 }
