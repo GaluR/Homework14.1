@@ -17,7 +17,7 @@ public class UserList {
 
     private static void load(Scanner scan, List<Double> list) {
         double number = 0;
-        while (!(number < 0)) {
+        while (number >= 0) {
             number = scan.nextDouble();
             if (number >= 0) {
                 list.add(number);
@@ -54,13 +54,13 @@ public class UserList {
 
     private static void sumOfNumbers(List<Double> list) {
         double sum =0;
-        for (int i = 0; i <list.size() ; i++) {
-            sum+=list.get(i);
-        }
         for (int i = 0; i < list.size(); i++) {
-            if (!(i == list.size() - 1)) {
+            if (i != list.size() - 1) {
                 System.out.printf(list.get(i) + " + ");
             } else {
+                for (int j = 0; j <list.size() ; j++) {
+                    sum += list.get(j);
+                }
                 System.out.printf(list.get(i) + " = " + sum);
             }
         }
